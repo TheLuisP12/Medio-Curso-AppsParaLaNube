@@ -1,0 +1,17 @@
+{
+  "name": "recipes-app",
+  "version": "1.0.0",
+  "description": "app simple de recetas",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.0",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    form, ul {
+      margin: 10px 0;
+    }
+    input[type="text"] {
+      padding: 5px;
+      width: 300px;
+    }
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Recipe App</h1>
+
+  <!-- Form to add a new recipe -->
+  <h2>Add a Recipe</h2>
+  <form action="/recipes" method="POST">
+    <label for="name">Recipe Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+    <label for="ingredients">Ingredients (comma-separated):</label>
+    <input type="text" id="ingredients" name="ingredients" required>
+    <br><br>
+    <button type="submit">Add Recipe</button>
+  </form>
+
+  <!-- Display the list of recipes -->
+  <h2>Recipe List</h2>
+  <ul id="recipe-list"></ul>
+
+  <script>
+    // Fetch and display the list of recipes
+    async function fetchRecipes() {
+      const response = await fetch('/recipes');
+      const recipes = await response.json();
+      const list = document.getElementById('recipe-list');
+      list.innerHTML = '';
+      recipes.forEach(recipe => {
+        const li = document.createElement('li');
+        li.textContent = `${recipe.name} - Ingredients: ${recipe.ingredients.join(', ')}`;
+        list.appendChild(li);
+      });
+    }
+
+    // Load recipes when the page is loaded
+    window.onload = fetchRecipes;
+  </script>
+</body>
+</html>
